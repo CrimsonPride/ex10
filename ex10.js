@@ -70,3 +70,16 @@ app.get('/modifier',  (req, res) => {
     }) 
 })
 
+app.post('/enregistrer',  (req, res) => {
+
+    db.collection('adresse').update({_id:ObjectId(req.body._id)},{$set:{'nom':req.body.nom, 'prenom':req.body.prenom, 'telephone':req.body.telephone, 'ville':req.body.ville, 'codepostal':req.body.codepostal}}, (err, resultat) => {
+
+    if(err) return res.send(500,err)
+    var cursor = db.collection('adresse').find().toArray(function(err, resultat){
+       if (err) return console.log(err)
+    // renders index.ejs
+    // affiche le contenu de la base de donnée
+    res.redirect('/');
+    }) 
+  }) 
+})
