@@ -28,7 +28,7 @@ app.get('/',  (req, res) => {
     var cursor = db.collection('adresse').find().toArray(function(err, resultat){
        if (err) return console.log(err)
     // renders index.ejs
-    // affiche le contenu de la BD
+    // affiche le contenu de la base de donnée
     res.render('index.ejs', {adresse: resultat})
 
     }) 
@@ -52,35 +52,7 @@ app.get('/detruire/:_id',  (req, res) => {
     var cursor = db.collection('adresse').find().toArray(function(err, resultat){
        if (err) return console.log(err)
     // renders index.ejs
-    // affiche le contenu de la BD
-    res.redirect('/');
-    }) 
-  }) 
-})
-
-app.get('/modifier',  (req, res) => {
-
-  //var nom = document.getElementById("nom").value;
-
-     var cursor = db.collection('adresse').find().toArray(function(err, resultat){
-       if (err) return console.log(err)
-    // renders index.ejs
-    // affiche le contenu de la BD
-    console.log(req.url.slice(-1));
-    res.render('index1.ejs', {adresse: resultat, id:req.url.slice(-1)})
-    }) 
-})
-
-app.post('/enregistrer',  (req, res) => {
-
-    db.collection('adresse').update({_id:ObjectId(req.body._id)},{$set:{'nom':req.body.nom, 'prenom':req.body.prenom, 'telephone':req.body.telephone, 'ville':req.body.ville, 'codepostal':req.body.codepostal}}, (err, resultat) => {
-
-    if(err) return res.send(500,err)
-    var cursor = db.collection('adresse').find().toArray(function(err, resultat){
-       if (err) return console.log(err)
-    // renders index.ejs
-    // affiche le contenu de la BD
-    //res.render('index.ejs', {adresse: resultat})
+    // affiche le contenu de la base de donnée
     res.redirect('/');
     }) 
   }) 
