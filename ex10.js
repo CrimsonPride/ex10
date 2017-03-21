@@ -57,3 +57,16 @@ app.get('/detruire/:_id',  (req, res) => {
     }) 
   }) 
 })
+
+
+app.get('/modifier',  (req, res) => {
+
+     var cursor = db.collection('adresse').find().toArray(function(err, resultat){
+       if (err) return console.log(err)
+    // renders index.ejs
+    // affiche le contenu de la base de donnée
+    console.log(req.url.slice(-1));
+    res.render('index1.ejs', {adresse: resultat, id:req.url.slice(-1)})
+    }) 
+})
+
